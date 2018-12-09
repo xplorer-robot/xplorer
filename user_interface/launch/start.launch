@@ -1,0 +1,3 @@
+<launch>
+<node name="foo" pkg="user_interface" type="start.bash" />
+</launch>

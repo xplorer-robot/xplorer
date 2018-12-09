@@ -1,0 +1,38 @@
+<launch>
+
+  
+   <param name="use_sim_time" value="true" />
+
+   <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+      
+        <param name="maxRange" value="6.0"/>
+        <param name="maxUrange" value="5.9"/>
+        <param name="map_update_interval" value="0.5"/>
+        <param name="xmin" value="-100.0"/>
+        <param name="ymin" value="-100.0"/>
+        <param name="xmax" value="100.0"/> 
+        <param name="ymax" value="100.0"/>
+        <param name="delta" value="0.25" />
+        <param name="temporalUpdate" value="0.1"/>
+        <param name="transform_publish_period" value="0.1"/>
+    </node>
+  
+   <node pkg="mike_mapping" type="odom_baselk" name="odom_baselk"/>
+   <node pkg="mike_mapping" type="baselk_baselsr" name="baselk_baselsr"/>
+   <node pkg="mike_mapping" type="baseft_baselk" name="baseft_baselk"/>
+   <node pkg="mike_mapping" type="mapping" name="mapping" output="screen" />
+   <node pkg="tf" type="static_transform_publisher" name="dummy" args="0 0 0 0 0 0 map dummymap 100" />
+   <node pkg="rviz" type="rviz" name="rviz"/>
+
+
+   <node pkg="tf" type="tf_remap" name="tf_remapper">
+   <rosparam param="mappings">
+    [{old: map, new: /dummymap},{old: odom, new: /dummyodom},{old: base_footprint, new: /dummyfootprint}, {old: laser_frame, new: scan}]
+   </rosparam>
+   </node>
+
+  <node pkg="rosbag" type="play" name="mikebag" args="/tf:=/tf_old --clock /home/xplorer/Downloads/2018-10-23-18-05-01.bag">
+  <remap from="tf" to="tf_old" />
+  </node>
+   
+</launch>

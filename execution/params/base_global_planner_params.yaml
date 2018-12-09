@@ -1,0 +1,7 @@
+base_global_planner: "global_planner/GlobalPlanner"
+
+GlobalPlanner:
+    allow_unknown: true
+    default_tolerance: 0.5
+    neutral_cost: 49
+    

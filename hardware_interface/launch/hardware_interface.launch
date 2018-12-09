@@ -1,0 +1,8 @@
+<launch>
+
+    <include file="$(find ca_driver)/launch/create_2.launch" />
+    <include file="$(find hardware_interface)/launch/odom_fixer.launch"/>
+    <include file="$(find hardware_interface)/launch/imu.launch" />
+    <include file="$(find hardware_interface)/launch/rplidar.launch" />
+    
+</launch>

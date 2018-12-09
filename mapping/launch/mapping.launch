@@ -1,0 +1,21 @@
+<launch>
+ <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping">
+      
+        <param name="maxRange" value="15"/>
+        <param name="maxUrange" value="10"/>
+        <param name="map_update_interval" value="3"/>
+        <param name="xmin" value="-50.0"/>
+        <param name="iterations" value="10"/>
+        <param name="minimumScore" value="575" />
+        <param name="particles" value="45" />
+        <param name="ymin" value="-50.0"/>
+        <param name="xmax" value="50.0"/> 
+        <param name="ymax" value="50.0"/>
+        <param name="delta" value="0.05" />
+        <param name="temporalUpdate" value="10"/>
+        <param name="linearUpdate" value="1"/>
+        <param name="angularUpdate" value=".01"/>
+                <param name="occ_thresh" value=".25"/>
+        <param name="transform_publish_period" value=".5"/>
+    </node>
+  </launch>

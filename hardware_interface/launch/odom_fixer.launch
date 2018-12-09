@@ -1,0 +1,5 @@
+<launch>
+    <node name="odom_fixer" pkg="hardware_interface" type="odom_feedback_fixer" output="screen">
+        <remap from="/odom_in" to="/odom"/>
+    </node>
+</launch>
